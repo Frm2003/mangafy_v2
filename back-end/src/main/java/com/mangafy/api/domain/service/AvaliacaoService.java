@@ -2,6 +2,7 @@ package com.mangafy.api.domain.service;
 
 import java.util.List;
 
+import com.mangafy.api.domain.repository.PublicacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

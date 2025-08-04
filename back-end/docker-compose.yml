@@ -9,3 +9,13 @@ services:
       - POSTGRES_PASSWORD=123456
     container_name: database
     restart: always
+  minio:
+    image:  minio/minio
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"

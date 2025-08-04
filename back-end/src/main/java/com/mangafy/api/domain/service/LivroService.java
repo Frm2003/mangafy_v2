@@ -11,7 +11,6 @@ import com.mangafy.api.application.service.ILivroService;
 import com.mangafy.api.domain.entity.Autor;
 import com.mangafy.api.domain.entity.Genero;
 import com.mangafy.api.domain.entity.Livro;
-import com.mangafy.api.domain.entity.PublicationType;
 import com.mangafy.api.domain.repository.GeneroRepository;
 import com.mangafy.api.domain.repository.LivroRepository;
 

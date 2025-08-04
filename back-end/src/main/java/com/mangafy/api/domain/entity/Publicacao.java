@@ -67,7 +67,4 @@ public class Publicacao {
 	
 	@Column(name = "capa_url")
 	private String capaUrl;
-		
-	@OneToMany(mappedBy = "publicacao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Avaliacao> avaliacoes;
 }
