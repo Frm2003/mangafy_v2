@@ -3,6 +3,7 @@ package com.mangafy.api.domain.service;
 import java.io.IOException;
 import java.util.List;
 
+import com.mangafy.api.domain.adapter.IStorageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mangafy.api.application.dto.PublicacaoDto;
 import com.mangafy.api.application.service.IAutorService;
 import com.mangafy.api.application.service.IMangaService;
-import com.mangafy.api.application.service.IStorageService;
+
 import com.mangafy.api.domain.entity.Autor;
 import com.mangafy.api.domain.entity.Genero;
 import com.mangafy.api.domain.entity.Manga;
@@ -31,7 +32,7 @@ public class MangaService implements IMangaService {
 	private IAutorService autorService;
 
 	@Autowired
-	private IStorageService storageService;
+	private IStorageAdapter storageAdapter;
 	
 	@Override
 	public List<Manga> findAll() {
@@ -64,7 +65,7 @@ public class MangaService implements IMangaService {
 		mangaModel.setCapaUrl(capaUrl);
 		mangaModel.setQtdCapitulos(dto.qtdCapitulos());
 		
-		storageService.upload(capaUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
+		storageAdapter.upload(capaUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
 		
 		return this.mangaRepository.save(mangaModel);
 	}
@@ -75,7 +76,7 @@ public class MangaService implements IMangaService {
 		
 		List<Genero> generos = this.generoRepository.findAllById(dto.generosIds());
 		
-		storageService.upload(mangaModel.getCapaUrl(), imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
+		storageAdapter.upload(mangaModel.getCapaUrl(), imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
 		
 		mangaModel.setGeneros(generos);
 		mangaModel.setTitulo(dto.titulo());
