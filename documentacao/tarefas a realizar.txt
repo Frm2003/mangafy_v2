@@ -1,3 +1,0 @@
-criar classes para usuarios do sistema e implementar o jdbc.
-montar uma api ou implementar no código uma conexão com drive.
-montar 2 fronts-end, um para autores e outro apenas para leitores.
