@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mangafy.api.domain.adapter.IStorageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mangafy.api.application.service.ICapituloService;
-import com.mangafy.api.application.service.IStorageService;
 import com.mangafy.api.domain.entity.Capitulo;
 import com.mangafy.api.domain.entity.Manga;
 import com.mangafy.api.domain.entity.Pagina;
@@ -24,7 +24,7 @@ public class CapituloService implements ICapituloService {
 	private MangaService mangaService;
 
 	@Autowired
-	private IStorageService storageService;
+	private IStorageAdapter storageAdapter;
 
 	@Override
 	public List<Capitulo> findAllByMangaId(Long id) {
@@ -46,7 +46,7 @@ public class CapituloService implements ICapituloService {
 		for (int i = 0; i < imagens.size(); i++) {
 			MultipartFile imagem = imagens.get(i);
 			String storageUrl = initialPath + "/" + i;
-			storageService.upload(storageUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
+			storageAdapter.upload(storageUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
 			paginas.add(new Pagina(storageUrl));
 		}
 		

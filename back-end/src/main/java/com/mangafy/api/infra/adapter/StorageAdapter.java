@@ -1,6 +1,6 @@
-package com.mangafy.api.infra.service;
+package com.mangafy.api.infra.adapter;
 
-import com.mangafy.api.application.service.IStorageService;
+import com.mangafy.api.domain.adapter.IStorageAdapter;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.GetObjectArgs;
@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 
 @Service
-public class StorageService implements IStorageService {
+public class StorageAdapter implements IStorageAdapter {
 
     private final MinioClient client;
 
     @Value("${storage.bucket-name}")
     private String bucket;
 
-    public StorageService(MinioClient client) {
+    public StorageAdapter(MinioClient client) {
         this.client = client;
     }
 
