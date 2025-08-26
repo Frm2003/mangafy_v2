@@ -2,6 +2,7 @@ package com.mangafy.api.domain.service;
 
 import java.util.List;
 
+import com.mangafy.api.domain.adapter.IStorageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mangafy.api.application.dto.PublicacaoDto;
 import com.mangafy.api.application.service.IAutorService;
 import com.mangafy.api.application.service.ILivroService;
-import com.mangafy.api.application.service.IStorageService;
 import com.mangafy.api.domain.entity.Autor;
 import com.mangafy.api.domain.entity.Genero;
 import com.mangafy.api.domain.entity.Livro;
@@ -30,7 +30,7 @@ public class LivroService implements ILivroService {
 	private IAutorService autorService;
 
 	@Autowired
-	private IStorageService storageService;
+	private IStorageAdapter storageAdapter;
 
 	@Override
 	public List<Livro> findAll() {
@@ -65,8 +65,8 @@ public class LivroService implements ILivroService {
 		livroModel.setStorageUrl(storageUrl);
 		livroModel.setNumPaginas(dto.numPaginas());
 
-		storageService.upload(capaUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
-		storageService.upload(storageUrl, pdf.getInputStream(), pdf.getContentType(), pdf.getSize());
+		storageAdapter.upload(capaUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
+		storageAdapter.upload(storageUrl, pdf.getInputStream(), pdf.getContentType(), pdf.getSize());
 
 		return this.livroRepository.save(livroModel);
 	}
@@ -77,8 +77,8 @@ public class LivroService implements ILivroService {
 		
 		List<Genero> generos = this.generoRepository.findAllById(dto.generosIds());
 
-		storageService.upload(livroModel.getCapaUrl(), imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
-		storageService.upload(livroModel.getStorageUrl(), pdf.getInputStream(), pdf.getContentType(), pdf.getSize());
+		storageAdapter.upload(livroModel.getCapaUrl(), imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
+		storageAdapter.upload(livroModel.getStorageUrl(), pdf.getInputStream(), pdf.getContentType(), pdf.getSize());
 		
 		livroModel.setGeneros(generos);
 		livroModel.setTitulo(dto.titulo());
