@@ -1,25 +1,25 @@
-package com.mangafy.api.domain.service;
+package com.mangafy.api.usecase.service.impl;
 
 import java.util.List;
 
-import com.mangafy.api.domain.adapter.IStorageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mangafy.api.application.adapter.IStorageAdapter;
 import com.mangafy.api.application.dto.PublicacaoDto;
-import com.mangafy.api.application.service.IAutorService;
-import com.mangafy.api.application.service.ILivroService;
+import com.mangafy.api.application.repository.GeneroRepository;
+import com.mangafy.api.application.repository.LivroRepository;
 import com.mangafy.api.domain.entity.Autor;
 import com.mangafy.api.domain.entity.Genero;
 import com.mangafy.api.domain.entity.Livro;
-import com.mangafy.api.domain.repository.GeneroRepository;
-import com.mangafy.api.domain.repository.LivroRepository;
+import com.mangafy.api.usecase.service.interfaces.IAutorService;
+import com.mangafy.api.usecase.service.interfaces.ILivroService;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-public class LivroService implements ILivroService {
+public class LivroService implements ILivroService {	
 	@Autowired
 	private LivroRepository livroRepository;
 

@@ -1,12 +1,14 @@
 package com.mangafy.api.infra.adapter;
 
-import com.mangafy.api.domain.adapter.IStorageAdapter;
+
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.GetObjectArgs;
 import io.minio.ObjectWriteResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.mangafy.api.application.adapter.IStorageAdapter;
 
 import java.io.InputStream;
 

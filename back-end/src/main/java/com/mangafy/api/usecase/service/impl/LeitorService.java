@@ -1,4 +1,4 @@
-package com.mangafy.api.domain.service;
+package com.mangafy.api.usecase.service.impl;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mangafy.api.application.dto.LeitorDto;
-import com.mangafy.api.application.service.ILeitorService;
+import com.mangafy.api.application.repository.LeitorRepository;
 import com.mangafy.api.domain.entity.Leitor;
-import com.mangafy.api.domain.repository.LeitorRepository;
+import com.mangafy.api.usecase.service.interfaces.ILeitorService;
 
 import jakarta.persistence.EntityNotFoundException;
 

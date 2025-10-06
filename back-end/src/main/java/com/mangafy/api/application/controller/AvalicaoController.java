@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mangafy.api.application.dto.AvaliacaoDto;
-import com.mangafy.api.application.service.IAvaliacaoService;
 import com.mangafy.api.domain.entity.Avaliacao;
+import com.mangafy.api.usecase.service.interfaces.IAvaliacaoService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

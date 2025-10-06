@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mangafy.api.application.dto.ComentarioDto;
-import com.mangafy.api.application.service.IComentarioService;
 import com.mangafy.api.domain.entity.Comentario;
+import com.mangafy.api.usecase.service.interfaces.IComentarioService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

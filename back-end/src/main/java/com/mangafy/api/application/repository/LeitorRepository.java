@@ -1,4 +1,4 @@
-package com.mangafy.api.domain.repository;
+package com.mangafy.api.application.repository;
 
 import java.util.UUID;
 

@@ -1,19 +1,19 @@
-package com.mangafy.api.domain.service;
+package com.mangafy.api.usecase.service.impl;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.mangafy.api.domain.repository.PublicacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mangafy.api.application.dto.ComentarioDto;
-import com.mangafy.api.application.service.IComentarioService;
-import com.mangafy.api.application.service.ILeitorService;
+import com.mangafy.api.application.repository.ComentarioRepository;
+import com.mangafy.api.application.repository.PublicacaoRepository;
 import com.mangafy.api.domain.entity.Comentario;
 import com.mangafy.api.domain.entity.Leitor;
 import com.mangafy.api.domain.entity.Publicacao;
-import com.mangafy.api.domain.repository.ComentarioRepository;
+import com.mangafy.api.usecase.service.interfaces.IComentarioService;
+import com.mangafy.api.usecase.service.interfaces.ILeitorService;
 
 import jakarta.persistence.EntityNotFoundException;
 

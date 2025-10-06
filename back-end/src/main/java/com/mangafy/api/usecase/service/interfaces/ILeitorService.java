@@ -1,4 +1,4 @@
-package com.mangafy.api.application.service;
+package com.mangafy.api.usecase.service.interfaces;
 
 import java.util.List;
 import java.util.UUID;

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 public class JacksonConfig {
 
     @Bean
-    public ObjectMapper objectMapper() {
+    ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new ParameterNamesModule());
         mapper.registerModule(new Jdk8Module());

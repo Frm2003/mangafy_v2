@@ -1,4 +1,4 @@
-package com.mangafy.api.application.service;
+package com.mangafy.api.usecase.service.interfaces;
 
 import java.io.IOException;
 import java.util.List;

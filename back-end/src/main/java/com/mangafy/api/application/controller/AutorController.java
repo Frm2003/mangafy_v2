@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mangafy.api.application.dto.AutorDto;
-import com.mangafy.api.application.service.IAutorService;
 import com.mangafy.api.domain.entity.Autor;
+import com.mangafy.api.usecase.service.interfaces.IAutorService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

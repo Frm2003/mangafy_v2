@@ -1,19 +1,20 @@
-package com.mangafy.api.domain.service;
+package com.mangafy.api.usecase.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mangafy.api.domain.adapter.IStorageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mangafy.api.application.service.ICapituloService;
+import com.mangafy.api.application.adapter.IStorageAdapter;
+import com.mangafy.api.application.repository.CapituloRepository;
 import com.mangafy.api.domain.entity.Capitulo;
 import com.mangafy.api.domain.entity.Manga;
 import com.mangafy.api.domain.entity.Pagina;
-import com.mangafy.api.domain.repository.CapituloRepository;
+import com.mangafy.api.usecase.service.interfaces.ICapituloService;
+
 
 @Service
 public class CapituloService implements ICapituloService {

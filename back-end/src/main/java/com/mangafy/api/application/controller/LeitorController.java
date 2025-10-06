@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mangafy.api.application.dto.LeitorDto;
-import com.mangafy.api.application.service.ILeitorService;
 import com.mangafy.api.domain.entity.Leitor;
+import com.mangafy.api.usecase.service.interfaces.ILeitorService;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

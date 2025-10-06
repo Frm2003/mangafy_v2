@@ -18,8 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangafy.api.application.dto.PublicacaoDto;
-import com.mangafy.api.application.service.ILivroService;
 import com.mangafy.api.domain.entity.Livro;
+import com.mangafy.api.usecase.service.interfaces.ILivroService;
 
 import jakarta.persistence.EntityNotFoundException;
 

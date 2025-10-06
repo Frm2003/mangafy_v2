@@ -1,4 +1,4 @@
-package com.mangafy.api.domain.adapter;
+package com.mangafy.api.application.adapter;
 
 import java.io.InputStream;
 

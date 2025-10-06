@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mangafy.api.application.service.IGeneroService;
 import com.mangafy.api.domain.entity.Genero;
+import com.mangafy.api.usecase.service.interfaces.IGeneroService;
 
 @RestController
 @RequestMapping("/generos")
