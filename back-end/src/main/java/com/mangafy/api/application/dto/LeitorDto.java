@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 public record LeitorDto(
 		@NotBlank String email, 
 		@NotBlank String nome, 
-		String apelido
+		String apelido,
+		String senha
 ) {
 
 }

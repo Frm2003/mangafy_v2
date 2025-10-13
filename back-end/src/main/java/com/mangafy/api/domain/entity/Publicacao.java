@@ -3,6 +3,8 @@ package com.mangafy.api.domain.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
@@ -35,6 +37,7 @@ public class Publicacao {
 
 	@ManyToOne
 	@JoinColumn(name = "autor_id", nullable = false, referencedColumnName = "id")
+	@JsonIgnore
 	private Autor autor;
 
 	@ManyToMany

@@ -1,16 +1,16 @@
 package com.mangafy.api.domain.entity;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.JoinColumn;
@@ -22,6 +22,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Leitor extends Usuario {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@ManyToMany
 	@JoinTable(joinColumns = @JoinColumn(name = "leitor_id"), name = "ler_mais_tarde", inverseJoinColumns = @JoinColumn(name = "publicacao_id"))
 	private List<Publicacao> lerMaisTarde;
@@ -34,4 +38,13 @@ public class Leitor extends Usuario {
 		this.setApelido(apelido);
 		this.lerMaisTarde = lerMaisTarde;
 	}
+	
+	@Override
+    public Collection<GrantedAuthority> getAuthorities() {
+        if (super.isAssinante()) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ASSINANTE"));
+        } else {
+            return List.of(new SimpleGrantedAuthority("ROLE_LEITOR"));
+        }
+    }
 }
