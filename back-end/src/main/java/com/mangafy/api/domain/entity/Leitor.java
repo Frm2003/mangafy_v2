@@ -5,15 +5,9 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.JoinColumn;
 import lombok.Setter;
 
 @DiscriminatorValue("LEITOR")
@@ -25,6 +19,9 @@ public class Leitor extends Usuario {
 	@ManyToMany
 	@JoinTable(joinColumns = @JoinColumn(name = "leitor_id"), name = "ler_mais_tarde", inverseJoinColumns = @JoinColumn(name = "publicacao_id"))
 	private List<Publicacao> lerMaisTarde;
+
+    @Column
+    private Boolean assinante;
 
 	public Leitor(UUID id, String email, String nome, String apelido, String cpf, String cnpj,
 			List<Publicacao> lerMaisTarde, List<Avaliacao> avaliacoes) {

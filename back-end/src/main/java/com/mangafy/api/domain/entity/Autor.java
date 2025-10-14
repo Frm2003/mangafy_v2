@@ -20,7 +20,7 @@ public class Autor extends Usuario {
 	
 	@Column(length = 14, unique = true)
 	private String cnpj;
-	
+
 	public Autor(UUID id, String email, String nome, String apelido, String cpf, String cnpj) {
 		this.setId(id);
         this.setEmail(email);

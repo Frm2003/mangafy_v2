@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mangafy.api.application.dto.LeitorDto;
@@ -17,6 +18,9 @@ import jakarta.persistence.EntityNotFoundException;
 public class LeitorService implements ILeitorService {
 	@Autowired
 	private LeitorRepository leitorRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public List<Leitor> findAll() {
@@ -36,6 +40,7 @@ public class LeitorService implements ILeitorService {
 		leitorModel.setApelido(dto.apelido());
 		leitorModel.setEmail(dto.email());
 		leitorModel.setNome(dto.nome());
+        leitorModel.setSenha(passwordEncoder.encode(dto.senha()));
 		
 		return this.leitorRepository.save(leitorModel);
 	}
@@ -47,6 +52,7 @@ public class LeitorService implements ILeitorService {
 		leitorModel.setApelido(dto.apelido());
 		leitorModel.setEmail(dto.email());
 		leitorModel.setNome(dto.nome());
+        leitorModel.setSenha(passwordEncoder.encode(dto.senha()));
 		
 		return this.leitorRepository.save(leitorModel);
 	}

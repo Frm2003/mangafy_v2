@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mangafy.api.application.dto.AutorDto;
@@ -17,6 +18,9 @@ import jakarta.persistence.EntityNotFoundException;
 public class AutorService implements IAutorService {
 	@Autowired
 	private AutorRepository autorRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<Autor> findAll() {
@@ -38,6 +42,7 @@ public class AutorService implements IAutorService {
 		autorModel.setCpf(dto.cpf());
 		autorModel.setEmail(dto.email());
 		autorModel.setNome(dto.nome());
+        autorModel.setSenha(passwordEncoder.encode(dto.senha()));
 
 		return this.autorRepository.save(autorModel);
 	}
@@ -51,6 +56,7 @@ public class AutorService implements IAutorService {
 		autorModel.setCpf(autorModel.getCpf() == null ? dto.cpf() : autorModel.getCpf());
 		autorModel.setEmail(dto.email());
 		autorModel.setNome(dto.nome());
+        autorModel.setSenha(passwordEncoder.encode(dto.senha()));
 
 		return this.autorRepository.save(autorModel);
 	}

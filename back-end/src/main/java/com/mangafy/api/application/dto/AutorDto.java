@@ -10,7 +10,8 @@ public record AutorDto(
 		String cnpj,
 		@NotBlank String email, 
 		@NotBlank String nome, 
-		String apelido
+		String apelido,
+        @NotBlank String senha
 ) {
 	public AutorDto {
         if ((cpf == null || cpf.isBlank()) && (cnpj == null || cnpj.isBlank())) {
