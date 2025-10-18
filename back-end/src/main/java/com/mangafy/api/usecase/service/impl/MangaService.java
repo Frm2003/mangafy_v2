@@ -63,6 +63,7 @@ public class MangaService implements IMangaService {
 		mangaModel.setISBN13(dto.ISBN13());
 		mangaModel.setCapaUrl(capaUrl);
 		mangaModel.setQtdCapitulos(dto.qtdCapitulos());
+		mangaModel.setPreemium(false);
 		
 		storageAdapter.upload(capaUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
 		

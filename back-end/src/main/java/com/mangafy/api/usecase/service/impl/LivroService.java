@@ -64,6 +64,8 @@ public class LivroService implements ILivroService {
 		livroModel.setCapaUrl(capaUrl);
 		livroModel.setStorageUrl(storageUrl);
 		livroModel.setNumPaginas(dto.numPaginas());
+		
+		livroModel.setPreemium(false);
 
 		storageAdapter.upload(capaUrl, imagem.getInputStream(), imagem.getContentType(), imagem.getSize());
 		storageAdapter.upload(storageUrl, pdf.getInputStream(), pdf.getContentType(), pdf.getSize());

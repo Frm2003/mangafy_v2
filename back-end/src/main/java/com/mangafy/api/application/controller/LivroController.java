@@ -1,11 +1,14 @@
 package com.mangafy.api.application.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangafy.api.application.dto.PublicacaoDto;
+import com.mangafy.api.domain.entity.Leitor;
 import com.mangafy.api.domain.entity.Livro;
+import com.mangafy.api.domain.entity.Usuario;
 import com.mangafy.api.usecase.service.interfaces.ILivroService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -26,11 +31,14 @@ import jakarta.persistence.EntityNotFoundException;
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
-	@Autowired
+    @Autowired
 	private ILivroService livroService;
 
 	@Autowired
 	private ObjectMapper objectMapper;
+
+    LivroController(LeitorController leitorController) {
+    }
 
 	@GetMapping
 	public ResponseEntity<List<Livro>> findAll() {
@@ -38,12 +46,39 @@ public class LivroController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Livro> findById(@PathVariable Long id) {
+	public ResponseEntity<Livro> findById(@PathVariable Long id, @AuthenticationPrincipal Usuario usuario) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(this.livroService.findById(id));
-		} catch (EntityNotFoundException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
+			// CONTATENA ROLES PARA VALIDAÇÃO
+	        String roles = usuario.getAuthorities()
+	                .stream()
+	                .map(GrantedAuthority::getAuthority)
+	                .collect(Collectors.joining(", "));
+
+	        Livro livro = this.livroService.findById(id);
+
+	        // Se for autor, tem acesso total
+	        if (roles.contains("ROLE_AUTOR"))
+	            return ResponseEntity.ok(livro);
+
+	        // Se for leitor, verifica se é assinante e se o livro é premium
+	        if (usuario instanceof Leitor leitor) {
+	            Boolean isAssinante = Boolean.TRUE.equals(leitor.getAssinante());
+	            Boolean isLivroPremium = Boolean.TRUE.equals(livro.getPreemium());
+
+	            // Leitor assinante pode ver livros premium, ou qualquer livro não premium
+	            if (!isLivroPremium || isAssinante) {
+	                return ResponseEntity.ok(livro);
+	            } else {
+	                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+	            }
+	        }
+
+	        // Caso não seja nem autor nem leitor (por segurança)
+	        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+
+	    } catch (EntityNotFoundException e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
 	}
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

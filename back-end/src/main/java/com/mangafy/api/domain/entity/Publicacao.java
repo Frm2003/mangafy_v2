@@ -65,4 +65,7 @@ public class Publicacao {
 	
 	@Column(name = "capa_url")
 	private String capaUrl;
+	
+	@Column
+	private Boolean preemium; 
 }

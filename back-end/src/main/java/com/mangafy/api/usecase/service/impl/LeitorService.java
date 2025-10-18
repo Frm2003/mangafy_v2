@@ -42,6 +42,8 @@ public class LeitorService implements ILeitorService {
 		leitorModel.setNome(dto.nome());
         leitorModel.setSenha(passwordEncoder.encode(dto.senha()));
 		
+        leitorModel.setAssinante(false);
+        
 		return this.leitorRepository.save(leitorModel);
 	}
 

@@ -33,7 +33,7 @@ public class Usuario implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	
-	@Column(length = 60)
+	@Column(length = 60, unique = true)
 	private String email;
 	
 	@Column(length = 100)

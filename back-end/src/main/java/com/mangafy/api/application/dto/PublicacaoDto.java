@@ -12,8 +12,8 @@ import jakarta.validation.constraints.Size;
 
 public record PublicacaoDto(
 		@NotNull UUID autorId,
-        List<Integer> generosIds,
-        String titulo,
+		@NotNull List<Integer> generosIds,
+		@NotNull String titulo,
         String sinopse,
         LocalDateTime dataDeLancamento,
         @Nullable @Size(min = 10, max = 10) String ISBN10,
