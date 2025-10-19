@@ -13,6 +13,7 @@ import com.mangafy.api.application.repository.LivroRepository;
 import com.mangafy.api.domain.entity.Autor;
 import com.mangafy.api.domain.entity.Genero;
 import com.mangafy.api.domain.entity.Livro;
+import com.mangafy.api.domain.entity.Publicacao;
 import com.mangafy.api.usecase.service.interfaces.IAutorService;
 import com.mangafy.api.usecase.service.interfaces.ILivroService;
 
@@ -36,7 +37,7 @@ public class LivroService implements ILivroService {
 	public List<Livro> findAll() {
 		return this.livroRepository.findAll();
 	}
-
+	
 	@Override
 	public Livro findById(Long id) {
 		return this.livroRepository.findById(id)

@@ -22,13 +22,4 @@ public class Leitor extends Usuario {
 
     @Column
     private Boolean assinante;
-
-	public Leitor(UUID id, String email, String nome, String apelido, String cpf, String cnpj,
-			List<Publicacao> lerMaisTarde, List<Avaliacao> avaliacoes) {
-		this.setId(id);
-		this.setEmail(email);
-		this.setNome(nome);
-		this.setApelido(apelido);
-		this.lerMaisTarde = lerMaisTarde;
-	}
 }
