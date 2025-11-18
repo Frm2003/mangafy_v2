@@ -8,7 +8,7 @@ import io.minio.ObjectWriteResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.mangafy.api.application.adapter.IStorageAdapter;
+import com.mangafy.api.adapters.adapter.IStorageAdapter;
 
 import java.io.InputStream;
 
